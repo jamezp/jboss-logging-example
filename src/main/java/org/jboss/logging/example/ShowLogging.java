@@ -22,31 +22,14 @@
 
 package org.jboss.logging.example;
 
-import org.jboss.logging.BasicLogger;
-import org.jboss.logging.LogMessage;
-import org.jboss.logging.Logger;
-import org.jboss.logging.Logger.Level;
-import org.jboss.logging.Message;
-import org.jboss.logging.MessageLogger;
-
 /**
+ * Date: 06.06.2011
  *
- * @author James R. Perkins (jrp)
+ * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
  */
-@MessageLogger(projectCode="BLOG")
-interface ExtendedBasicLogger extends BasicLogger {
+public class ShowLogging {
 
-    /**
-     * The extended basic logger.
-     */
-    ExtendedBasicLogger LOGGER = Logger.getMessageLogger(ExtendedBasicLogger.class, ExtendedBasicLogger.class.getPackage().getName());
-
-    @LogMessage(level = Level.WARN)
-    @Message(id = 1, value = "Parameter %s cannot be null.")
-    void nullParameterValue(String param);
-
-    @LogMessage(level = Level.INFO)
-    @Message(id = 2, value = "Version: %s")
-    void releaseVersion(String version);
-
+    public static void main(String[] args) {
+        DefaultLogger.LOGGER.illegalArgument();
+    }
 }

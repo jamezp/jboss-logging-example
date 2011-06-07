@@ -24,6 +24,7 @@ package org.jboss.logging.example;
 
 import org.jboss.logging.Cause;
 import org.jboss.logging.LogMessage;
+import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
@@ -32,7 +33,12 @@ import org.jboss.logging.MessageLogger;
  * @author James R. Perkins (jrp)
  */
 @MessageLogger(projectCode = "LOGL")
-public interface ErrorLogger {
+interface ErrorLogger {
+
+    /**
+     * The error logger.
+     */
+    ErrorLogger ERROR_LOGGER = Logger.getMessageLogger(ErrorLogger.class, ErrorLogger.class.getPackage().getName());
 
     @LogMessage(level = Level.ERROR)
     @Message(id = 8, value = "Error: %s")

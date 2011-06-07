@@ -27,6 +27,7 @@ package org.jboss.logging.example;
 
 import org.jboss.logging.Cause;
 import org.jboss.logging.LogMessage;
+import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.Message.Format;
@@ -39,7 +40,12 @@ import java.lang.annotation.Annotation;
  *
  */
 @MessageLogger(projectCode = "LOGL")
-public interface DefaultLogger {
+interface DefaultLogger {
+
+    /**
+     * The default logger.
+     */
+    DefaultLogger LOGGER = Logger.getMessageLogger(DefaultLogger.class, DefaultLogger.class.getPackage().getName());
 
     @LogMessage(level = Level.FATAL)
     @Message(value = "Cannot process %s.")

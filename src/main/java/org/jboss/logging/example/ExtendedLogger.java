@@ -26,6 +26,7 @@
 package org.jboss.logging.example;
 
 import org.jboss.logging.LogMessage;
+import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
@@ -35,7 +36,11 @@ import org.jboss.logging.MessageLogger;
  *
  */
 @MessageLogger(projectCode = "LOGEL")
-public interface ExtendedLogger extends DefaultLogger {
+interface ExtendedLogger extends DefaultLogger {
+    /**
+     * The extended logger.
+     */
+    ExtendedLogger EXTENDED_LOGGER = Logger.getMessageLogger(ExtendedLogger.class, ExtendedLogger.class.getPackage().getName());
 
     @LogMessage(level = Level.ERROR)
     @Message(id = Message.INHERIT, value = "%s.")

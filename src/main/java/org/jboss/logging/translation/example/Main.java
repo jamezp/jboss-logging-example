@@ -20,28 +20,20 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-/**
- *
- */
-package org.jboss.logging.example;
+package org.jboss.logging.translation.example;
 
-
-import org.jboss.logging.Cause;
-import org.jboss.logging.Message;
-import org.jboss.logging.Message.Format;
-import org.jboss.logging.MessageBundle;
+import java.util.Locale;
 
 /**
- * @author James R. Perkins Jr. (jrp)
+ * Date: 06.06.2011
  *
+ * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
  */
-public class InnerBundle {
+public class Main {
 
-    @MessageBundle(projectCode="LOGB")
-    interface ErrorBundle {
-
-        @Message(id = 20, value = "ERROR: {0} Root cause: {1}",
-                 format = Format.MESSAGE_FORMAT)
-        String errorMessage(@Cause Throwable cause, String message);
+    public static void main(String[] args) {
+        Locale.setDefault(Locale.FRANCE);
+        TrainsSpotterLog.LOGGER.nbDieselTrains(8);
+        System.out.println(TrainInnerMessages.MESSAGES.noDieselTrains("XYZ"));
     }
 }

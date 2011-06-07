@@ -31,6 +31,7 @@ import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.Message.Format;
 import org.jboss.logging.MessageBundle;
+import org.jboss.logging.Messages;
 
 import java.io.IOException;
 
@@ -39,7 +40,14 @@ import java.io.IOException;
  *
  */
 @MessageBundle(projectCode = "LOGB")
-public interface ExampleBundle {
+interface ExampleMessages {
+
+    /**
+     * The messages.
+     */
+    ExampleMessages MESSAGES = Messages.getBundle(ExampleMessages.class);
+
+
     @LogMessage(level = Level.ERROR)
     @Message(value="%s cannot be null.")
     CharSequence valueNotNull(String value);

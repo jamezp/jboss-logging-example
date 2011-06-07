@@ -22,7 +22,9 @@
 
 package org.jboss.logging.translation.example;
 
+import org.jboss.logging.BasicLogger;
 import org.jboss.logging.LogMessage;
+import org.jboss.logging.Logger;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
 
@@ -30,7 +32,11 @@ import org.jboss.logging.MessageLogger;
  * @author Kevin Pollet
  */
 @MessageLogger(projectCode = "TPS")
-public interface TrainsSpotterLog {
+interface TrainsSpotterLog extends BasicLogger {
+    /**
+     * The logger.
+     */
+    TrainsSpotterLog LOGGER = Logger.getMessageLogger(TrainsSpotterLog.class, TrainsSpotterLog.class.getPackage().getName());
 
     @LogMessage
     @Message(id = 1, value = "There is %s diesel trains")

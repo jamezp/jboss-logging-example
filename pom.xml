@@ -32,6 +32,12 @@
     <name>jboss-logging-example</name>
     <url>http://maven.apache.org</url>
 
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>6-beta-2</version>
+    </parent>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.deploy.skip>true</maven.deploy.skip>
@@ -44,7 +50,8 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging-processor</artifactId>
-            <version>1.0.0.Beta7-SNAPSHOT</version>
+            <version>1.0.0.Beta8-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--
@@ -53,7 +60,14 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-            <version>3.0.0.Beta6-SNAPSHOT</version>
+            <version>3.0.0.CR2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -62,11 +76,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <!-- Must be at least version 2.2 with a target of 1.6 to generate the source files in
+                     target/generated-sources -->
                 <version>2.3.2</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
-                    <showWarnings>true</showWarnings>
+                    <!-- Optional if you wan to generate skeleton translation properties files -->
                     <compilerArgument>
                         -AgeneratedTranslationFilesPath=${project.basedir}/target/generated-translation-files
                     </compilerArgument>

@@ -35,7 +35,7 @@ import java.io.IOException;
  * @author James R. Perkins (jrp)
  */
 @MessageBundle(projectCode = "LOGB")
-public interface ExceptionBundle {
+interface ExceptionBundle {
 
     @Message(id = 12, value = "Could not write to file %s.")
     IOException writeError(@Cause Throwable cause, File file);

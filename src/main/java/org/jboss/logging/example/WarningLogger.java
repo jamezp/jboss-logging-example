@@ -24,16 +24,21 @@ package org.jboss.logging.example;
 
 import org.jboss.logging.Cause;
 import org.jboss.logging.LogMessage;
+import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
 
 /**
- *
  * @author James R. Perkins (jrp)
  */
 @MessageLogger(projectCode = "LOGL")
-public interface WarningLogger {
+interface WarningLogger {
+
+    /**
+     * The warning logger.
+     */
+    WarningLogger WARNING_LOGGER = Logger.getMessageLogger(WarningLogger.class, WarningLogger.class.getPackage().getName());
 
     @LogMessage(level = Level.WARN)
     @Message(id = 6, value = "Warning: %s")

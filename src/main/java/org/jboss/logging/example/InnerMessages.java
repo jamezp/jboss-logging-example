@@ -20,33 +20,33 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.jboss.logging.example;
-
-import org.jboss.logging.BasicLogger;
-import org.jboss.logging.LogMessage;
-import org.jboss.logging.Logger;
-import org.jboss.logging.Logger.Level;
-import org.jboss.logging.Message;
-import org.jboss.logging.MessageLogger;
-
 /**
  *
- * @author James R. Perkins (jrp)
  */
-@MessageLogger(projectCode="BLOG")
-interface ExtendedBasicLogger extends BasicLogger {
+package org.jboss.logging.example;
 
+
+import org.jboss.logging.Cause;
+import org.jboss.logging.Message;
+import org.jboss.logging.Message.Format;
+import org.jboss.logging.MessageBundle;
+import org.jboss.logging.Messages;
+
+/**
+ * @author James R. Perkins Jr. (jrp)
+ *
+ */
+class InnerMessages {
     /**
-     * The extended basic logger.
+     * The messages.
      */
-    ExtendedBasicLogger LOGGER = Logger.getMessageLogger(ExtendedBasicLogger.class, ExtendedBasicLogger.class.getPackage().getName());
+    static final ErrorMessages MESSAGES = Messages.getBundle(ErrorMessages.class);
 
-    @LogMessage(level = Level.WARN)
-    @Message(id = 1, value = "Parameter %s cannot be null.")
-    void nullParameterValue(String param);
+    @MessageBundle(projectCode="LOGB")
+    interface ErrorMessages {
 
-    @LogMessage(level = Level.INFO)
-    @Message(id = 2, value = "Version: %s")
-    void releaseVersion(String version);
-
+        @Message(id = 20, value = "ERROR: {0} Root cause: {1}",
+                 format = Format.MESSAGE_FORMAT)
+        String errorMessage(@Cause Throwable cause, String message);
+    }
 }

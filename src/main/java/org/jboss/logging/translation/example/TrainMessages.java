@@ -24,12 +24,17 @@ package org.jboss.logging.translation.example;
 
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
+import org.jboss.logging.Messages;
 
 /**
  * @author Kevin Pollet
  */
-@MessageBundle(projectCode="")
-public interface TrainMessages {
+@MessageBundle(projectCode = "")
+interface TrainMessages {
+    /**
+     * The messages.
+     */
+    TrainMessages MESSAGES = Messages.getBundle(TrainMessages.class);
 
     @Message("There is no diesel trains due to %s")
     String noDieselTrains(String cause);

@@ -24,11 +24,13 @@ package org.jboss.logging.translation.example;
 
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
+import org.jboss.logging.Messages;
 
 /**
  * @author Kevin Pollet
  */
-public class TrainInnerMessages {
+class TrainInnerMessages {
+    static final InnerMessages MESSAGES = Messages.getBundle(InnerMessages.class);
 
     @MessageBundle(projectCode="TRN")
     interface InnerMessages {
