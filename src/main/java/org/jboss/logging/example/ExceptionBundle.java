@@ -23,6 +23,7 @@
 package org.jboss.logging.example;
 
 import org.jboss.logging.Cause;
+import org.jboss.logging.FormatWith;
 import org.jboss.logging.LogMessage;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
@@ -30,6 +31,7 @@ import org.jboss.logging.MessageBundle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Formatter;
 
 /**
  * @author James R. Perkins (jrp)
@@ -38,7 +40,7 @@ import java.io.IOException;
 interface ExceptionBundle {
 
     @Message(id = 12, value = "Could not write to file %s.")
-    IOException writeError(@Cause Throwable cause, File file);
+    IOException writeError(@Cause Throwable cause, @FormatWith(Formatter.class) File file);
 
     @LogMessage(level = Level.FATAL)
     @Message(id = 10, value = "Error calculating %s.")
@@ -58,8 +60,14 @@ interface ExceptionBundle {
     @Message(id = 99998, value = "An invalid constructor was found.")
     InvalidCtorException invalidConstructor();
 
-    @Message(id = 99997, value = "Invalid constructor in %s.")
+    @Message(id = Message.INHERIT, value = "Invalid constructor in %s.")
     InvalidCtorException invalidConstructor(Class<?> clazz);
 
-    InvalidCtorException invalidConstructor(@Cause Throwable cause, Class<?> clazz);
+    InvalidCtorException invalidConstructor(@Cause Throwable cause);
+
+    /*@Message("Attribute %s is not valid for tag %s.")
+    SAXParseException invalidAttribute(@Param Locator locator, String attributeName, String tagName);*/
+
+    @Message(value = "Bad")
+    IllegalArgumentException bad();
 }

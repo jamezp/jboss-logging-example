@@ -32,6 +32,8 @@ import org.jboss.logging.Message.Format;
 import org.jboss.logging.MessageBundle;
 import org.jboss.logging.Messages;
 
+import java.util.Collection;
+
 /**
  * @author James R. Perkins Jr. (jrp)
  *
@@ -45,8 +47,12 @@ class InnerMessages {
     @MessageBundle(projectCode="LOGB")
     interface ErrorMessages {
 
-        @Message(id = 20, value = "ERROR: {0} Root cause: {1}",
+        @Message(id = 20, value = "ERROR: {}",
                  format = Format.MESSAGE_FORMAT)
         String errorMessage(@Cause Throwable cause, String message);
+
+        @Message(id = 21, value = "Collection {0} cannot contain duplicate entries. {0} already contains {1}",
+                 format = Format.MESSAGE_FORMAT)
+        IllegalArgumentException duplicateEntries(@Cause Throwable cause, Collection<String> collection, String value);
     }
 }

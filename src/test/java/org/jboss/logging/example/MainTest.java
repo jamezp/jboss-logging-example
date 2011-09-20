@@ -20,7 +20,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.jboss.logging.translation.example;
+package org.jboss.logging.example;
+
+import org.junit.Test;
 
 import java.util.Locale;
 
@@ -29,11 +31,9 @@ import java.util.Locale;
  *
  * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
  */
-public class Main {
-
-    public static void main(String[] args) {
-        Locale.setDefault(Locale.FRANCE);
-        TrainsSpotterLog.LOGGER.nbDieselTrains(8);
-        System.out.println(TrainInnerMessages.MESSAGES.noDieselTrains("XYZ"));
+public class MainTest {
+    @Test
+    public void testMain() throws Exception {
+        Main.testLocale(Locale.FRANCE);
     }
 }

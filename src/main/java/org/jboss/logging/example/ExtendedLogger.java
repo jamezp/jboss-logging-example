@@ -36,13 +36,13 @@ import org.jboss.logging.MessageLogger;
  *
  */
 @MessageLogger(projectCode = "LOGEL")
-interface ExtendedLogger extends DefaultLogger {
+public interface ExtendedLogger extends DefaultLogger {
     /**
      * The extended logger.
      */
     ExtendedLogger EXTENDED_LOGGER = Logger.getMessageLogger(ExtendedLogger.class, ExtendedLogger.class.getPackage().getName());
 
     @LogMessage(level = Level.ERROR)
-    @Message(id = Message.INHERIT, value = "%s.")
+    @Message(id = Message.INHERIT, value = "Error indicating: %s.")
     void extendedError(String value);
 }

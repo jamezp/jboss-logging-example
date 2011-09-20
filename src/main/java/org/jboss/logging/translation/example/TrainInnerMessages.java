@@ -22,6 +22,7 @@
 
 package org.jboss.logging.translation.example;
 
+import org.jboss.logging.Cause;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
 import org.jboss.logging.Messages;
@@ -29,13 +30,15 @@ import org.jboss.logging.Messages;
 /**
  * @author Kevin Pollet
  */
-class TrainInnerMessages {
-    static final InnerMessages MESSAGES = Messages.getBundle(InnerMessages.class);
+public class TrainInnerMessages {
+   public static final InnerMessages MESSAGES = Messages.getBundle(InnerMessages.class);
 
     @MessageBundle(projectCode="TRN")
-    interface InnerMessages {
+    public interface InnerMessages {
 
         @Message("There is no diesel trains due to %s")
         String noDieselTrains(String cause);
+
+        IllegalStateException noDieselTrains(@Cause Throwable cause, String stringCause);
     }
 }

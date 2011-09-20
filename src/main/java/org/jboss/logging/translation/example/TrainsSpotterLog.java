@@ -32,7 +32,7 @@ import org.jboss.logging.MessageLogger;
  * @author Kevin Pollet
  */
 @MessageLogger(projectCode = "TPS")
-interface TrainsSpotterLog extends BasicLogger {
+public interface TrainsSpotterLog extends BasicLogger {
     /**
      * The logger.
      */
@@ -41,6 +41,9 @@ interface TrainsSpotterLog extends BasicLogger {
     @LogMessage
     @Message(id = 1, value = "There is %s diesel trains")
     void nbDieselTrains(int number);
+
+    @LogMessage
+    void nbDieselTrains(long number);
 
     @LogMessage
     @Message(id = Message.INHERIT, value = "There are %s diesel trains on track %s.")

@@ -33,4 +33,15 @@ public class InvalidCtorException extends Exception {
     public InvalidCtorException(String msg, Throwable cause) {
         super(msg,  cause);
     }
+
+    public InvalidCtorException(String msg, Throwable cause, Object value) {
+        super(msg, cause);
+    }
+
+    public InvalidCtorException(String msg, Throwable cause, Class<?> value) {
+        super(msg, cause);
+    }
+
+    public InvalidCtorException() {
+    }
 }
