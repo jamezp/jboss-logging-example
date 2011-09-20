@@ -32,11 +32,11 @@
     <name>jboss-logging-example</name>
     <url>http://maven.apache.org</url>
 
-    <parent>
+    <!-- <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
         <version>6</version>
-    </parent>
+    </parent> -->
 
     <dependencies>
         <!--
@@ -80,7 +80,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <compilerArgument>
                         -AgeneratedTranslationFilesPath=${project.build.directory}/generated-translation-files
                     </compilerArgument>
@@ -89,6 +92,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -100,6 +104,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
                 <configuration>
                     <systemProperties>
                         <property>
