@@ -42,4 +42,8 @@ public class ValueException extends RuntimeException {
     public ValueException(String msg) {
         super(msg);
     }
+
+    public void setValue(final Object value) {
+        // Do nothing
+    }
 }

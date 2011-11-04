@@ -28,6 +28,8 @@ package org.jboss.logging.example;
  */
 public class GenericException extends RuntimeException {
 
+    public Integer errorCode;
+
     /**
      * Creates a new instance of <code>ValueException</code> without detail message.
      */

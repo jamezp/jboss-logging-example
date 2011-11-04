@@ -23,14 +23,22 @@
 package org.jboss.logging.example;
 
 import org.jboss.logging.Cause;
+import org.jboss.logging.Field;
 import org.jboss.logging.FormatWith;
 import org.jboss.logging.LogMessage;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
+import org.jboss.logging.Param;
+import org.jboss.logging.Property;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXParseException;
 
+import javax.transaction.xa.XAException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Formatter;
 
 /**
@@ -40,7 +48,7 @@ import java.util.Formatter;
 interface ExceptionBundle {
 
     @Message(id = 12, value = "Could not write to file %s.")
-    IOException writeError(@Cause Throwable cause, @FormatWith(Formatter.class) File file);
+    IOException writeError(@Cause Throwable cause, File file) throws RuntimeException;
 
     @LogMessage(level = Level.FATAL)
     @Message(id = 10, value = "Error calculating %s.")
@@ -50,6 +58,16 @@ interface ExceptionBundle {
     ValueException invalidValue(@Cause Throwable cause, String value);
 
     ValueException invalidValue(String value);
+
+    @Message(id = 13, value = "Invalid Decimal")
+    ValueException invalidValue(@Property(name = "value") BigDecimal v);
+
+    ValueException invalidValue(@Property Double value);
+
+    ValueException invalidValue(@Property float value);
+
+    @Message("Generic exception caught")
+    GenericException caught(@Param Throwable cause, @Field int errorCode);
 
     @Message("Invalid key value.")
     ValueException invalidValueKey();
@@ -65,9 +83,9 @@ interface ExceptionBundle {
 
     InvalidCtorException invalidConstructor(@Cause Throwable cause);
 
-    /*@Message("Attribute %s is not valid for tag %s.")
-    SAXParseException invalidAttribute(@Param Locator locator, String attributeName, String tagName);*/
+    @Message("Attribute %s is not valid for tag %s.")
+    SAXParseException invalidAttribute(@Param Locator locator, String attributeName, String tagName);
 
-    @Message(value = "Bad")
-    IllegalArgumentException bad();
+    @Message("Transaction is invalid")
+    XAException invalidTransaction(@Field Integer errorCode);
 }

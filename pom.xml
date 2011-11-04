@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging-processor</artifactId>
-            <version>1.0.0.CR2-SNAPSHOT</version>
+            <version>1.0.0.CR4-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-            <version>3.1.0.Beta1-SNAPSHOT</version>
+            <version>3.1.0.Beta4-SNAPSHOT</version>
         </dependency>
 
         <!--
@@ -105,6 +105,10 @@
                         <property>
                             <name>java.util.logging.manager</name>
                             <value>org.jboss.logmanager.LogManager</value>
+                        </property>
+                        <property>
+                            <name>logging.configuration</name>
+                            <value>file:${project.build.directory}/classes/logging.properties</value>
                         </property>
                     </systemProperties>
                 </configuration>

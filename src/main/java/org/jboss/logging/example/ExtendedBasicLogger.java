@@ -26,6 +26,7 @@ import org.jboss.logging.BasicLogger;
 import org.jboss.logging.LogMessage;
 import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
+import org.jboss.logging.LoggingClass;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
 
@@ -33,7 +34,7 @@ import org.jboss.logging.MessageLogger;
  *
  * @author James R. Perkins (jrp)
  */
-@MessageLogger(projectCode="BLOG")
+@MessageLogger(projectCode="BLOG", loggingClass = Main.class)
 interface ExtendedBasicLogger extends BasicLogger {
 
     /**
@@ -48,5 +49,13 @@ interface ExtendedBasicLogger extends BasicLogger {
     @LogMessage(level = Level.INFO)
     @Message(id = 2, value = "Version: %s")
     void releaseVersion(String version);
+
+    @LogMessage(level = Level.INFO)
+    @Message(id = 3, value = "Message: %s Line: %d")
+    void multiTest(@LoggingClass Class<?> clazz, String message, int line);
+
+    @LogMessage(level = Level.INFO)
+    @Message(id = 4, value = "Invalid class name")
+    void invalidClassName(@LoggingClass String className);
 
 }

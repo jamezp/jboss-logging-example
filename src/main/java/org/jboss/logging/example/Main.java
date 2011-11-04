@@ -26,6 +26,12 @@ import org.jboss.logging.Logger;
 import org.jboss.logging.translation.example.TrainInnerMessages;
 import org.jboss.logging.translation.example.TrainsSpotterLog;
 
+import javax.transaction.xa.XAException;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.StringWriter;
 import java.util.Locale;
 
 /**
@@ -35,7 +41,7 @@ import java.util.Locale;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         if (args == null || args.length == 0) {
             testLocale(Locale.getDefault());
         } else {
@@ -67,10 +73,17 @@ public class Main {
         }
     }
 
-    public static void testLocale(final Locale locale) {
+    public static void testLocale(final Locale locale) throws IOException {
         final TrainsSpotterLog tsLogger = Logger.getMessageLogger(TrainsSpotterLog.class, Main.class.getPackage().getName(), locale);
         tsLogger.nbDieselTrains(8);
-        System.out.println(TrainInnerMessages.MESSAGES.noDieselTrains("XYZ"));
+        tsLogger.testDebug(Main.class);
+        Logger.getLogger(Main.class).info(TrainInnerMessages.MESSAGES.noDieselTrains("XYZ"));
         ExtendedLogger.EXTENDED_LOGGER.invalidValue();
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        out.write("Test out".getBytes());
+        ErrorLogger.ERROR_LOGGER.error(out);
+        ExtendedBasicLogger.LOGGER.debugf("Line test, should be 85.");
+        ExtendedBasicLogger.LOGGER.infof("Line test, should be 86.");
+        ExtendedBasicLogger.LOGGER.multiTest(Main.class, "Main.class is being used.", 87);
     }
 }

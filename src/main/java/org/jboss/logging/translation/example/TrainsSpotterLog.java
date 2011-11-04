@@ -28,6 +28,8 @@ import org.jboss.logging.Logger;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
 
+import static org.jboss.logging.Logger.Level.DEBUG;
+
 /**
  * @author Kevin Pollet
  */
@@ -48,4 +50,9 @@ public interface TrainsSpotterLog extends BasicLogger {
     @LogMessage
     @Message(id = Message.INHERIT, value = "There are %s diesel trains on track %s.")
     void nbDieselTrains(int number, String track);
+
+
+    @LogMessage(level = DEBUG)
+    @Message("Test debug %s")
+    void testDebug(Class<?> clazz);
 }

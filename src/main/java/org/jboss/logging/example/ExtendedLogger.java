@@ -43,6 +43,6 @@ public interface ExtendedLogger extends DefaultLogger {
     ExtendedLogger EXTENDED_LOGGER = Logger.getMessageLogger(ExtendedLogger.class, ExtendedLogger.class.getPackage().getName());
 
     @LogMessage(level = Level.ERROR)
-    @Message(id = Message.INHERIT, value = "Error indicating: %s.")
+    @Message(value = "Error indicating: %s.")
     void extendedError(String value);
 }

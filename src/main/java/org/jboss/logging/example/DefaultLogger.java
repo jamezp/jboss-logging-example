@@ -37,7 +37,6 @@ import java.lang.annotation.Annotation;
 
 /**
  * @author James R. Perkins Jr. (jrp)
- *
  */
 @MessageLogger(projectCode = "LOGL")
 interface DefaultLogger {
@@ -71,11 +70,11 @@ interface DefaultLogger {
     void meltDown(@Cause Throwable cause, String value);
 
     @Message(id = 4, value = "Value {0} could not be added to {1}",
-             format = Format.MESSAGE_FORMAT)
+            format = Format.MESSAGE_FORMAT)
     IllegalArgumentException illegalValue(@Cause Throwable cause, String value, String collection);
 
     @Message(id = 5, value = "Value is invalid.",
-             format = Format.MESSAGE_FORMAT)
+            format = Format.MESSAGE_FORMAT)
     String invalidValue();
 
     @Message(id = 99, value = "An illegal argument was found.")

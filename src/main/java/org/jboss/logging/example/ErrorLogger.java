@@ -23,11 +23,15 @@
 package org.jboss.logging.example;
 
 import org.jboss.logging.Cause;
+import org.jboss.logging.FormatWith;
 import org.jboss.logging.LogMessage;
 import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
+
+import java.io.OutputStream;
+import java.util.Formatter;
 
 /**
  * @author James R. Perkins (jrp)
@@ -42,7 +46,7 @@ interface ErrorLogger {
 
     @LogMessage(level = Level.ERROR)
     @Message(id = 8, value = "Error: %s")
-    void error(String value);
+    void error(@FormatWith(Formatter.class) OutputStream errorStream);
 
     @Message(id = 500, value = "Value %s is invalid.")
     ValueException invalidValue(String value);
@@ -51,4 +55,5 @@ interface ErrorLogger {
     @LogMessage(level = Level.ERROR)
     @Message("Error Message: %s for class: %s")
     void error(@Cause Throwable cause, String error, Class<?> clazz);
+
 }
