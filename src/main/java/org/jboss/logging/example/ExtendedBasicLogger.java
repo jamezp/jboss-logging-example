@@ -34,7 +34,7 @@ import org.jboss.logging.MessageLogger;
  *
  * @author James R. Perkins (jrp)
  */
-@MessageLogger(projectCode="BLOG", loggingClass = Main.class)
+@MessageLogger(projectCode="BLOG")
 interface ExtendedBasicLogger extends BasicLogger {
 
     /**
@@ -56,6 +56,6 @@ interface ExtendedBasicLogger extends BasicLogger {
 
     @LogMessage(level = Level.INFO)
     @Message(id = 4, value = "Invalid class name")
-    void invalidClassName(@LoggingClass String className);
+    void invalidClassName(@LoggingClass Class clazz);
 
 }
