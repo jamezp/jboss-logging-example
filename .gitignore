@@ -5,6 +5,8 @@ target/
 .settings/
 .classpath
 .project
+#Ignore Eclipse APT configuration file created by https://github.com/jbosstools/m2e-apt
+.factorypath
 
 #Ignore Intellij files
 *.iml
