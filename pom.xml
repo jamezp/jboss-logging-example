@@ -32,12 +32,6 @@
     <name>jboss-logging-example</name>
     <url>http://maven.apache.org</url>
 
-    <!-- <parent>
-        <groupId>org.jboss</groupId>
-        <artifactId>jboss-parent</artifactId>
-        <version>6</version>
-    </parent> -->
-
     <dependencies>
         <!--
             JBoss Tools
