@@ -38,24 +38,18 @@
         <version>6</version>
     </parent>
 
+    <properties>
+        <version.org.jboss.logging>3.1.0.GA</version.org.jboss.logging>
+    </properties>
+    
     <dependencies>
-        <!--
-            JBoss Tools
-        -->
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging-processor</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!--
             JBoss Logging
         -->
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-            <version>3.1.0.GA</version>
+            <version>${version.org.jboss.logging}</version>
         </dependency>
 
         <!--
@@ -80,7 +74,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
                 <configuration>
+                    <annotationProcessorPaths>
+                      <annotationProcessorPath>
+                        <groupId>org.jboss.logging</groupId>
+                        <artifactId>jboss-logging-processor</artifactId>
+                        <version>1.0.0.Final</version>
+                      </annotationProcessorPath>
+                      <annotationProcessorPath>
+                        <groupId>org.jboss.logging</groupId>
+                        <artifactId>jboss-logging</artifactId>
+                        <version>${version.org.jboss.logging}</version>
+                      </annotationProcessorPath>
+                    </annotationProcessorPaths>
                     <compilerArgument>
                         -AgeneratedTranslationFilesPath=${project.build.directory}/generated-translation-files
                     </compilerArgument>
