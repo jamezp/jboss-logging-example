@@ -22,6 +22,7 @@
 
 package org.jboss.logging.example;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Locale;
@@ -32,8 +33,14 @@ import java.util.Locale;
  * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
  */
 public class MainTest {
+
     @Test
     public void testMain() throws Exception {
-        Main.testLocale(Locale.FRANCE);
+        Trains trains = new Trains();
+        trains.demoLocalizedLoggingWithMessages();
+
+        String msg = trains.getMessage(Locale.FRANCE);
+        System.out.println(msg);
+        Assert.assertTrue(msg.contains("TRN000123"));
     }
 }

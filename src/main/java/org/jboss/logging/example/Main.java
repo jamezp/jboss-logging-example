@@ -19,71 +19,21 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-
 package org.jboss.logging.example;
 
-import org.jboss.logging.Logger;
-import org.jboss.logging.translation.example.TrainInnerMessages;
-import org.jboss.logging.translation.example.TrainsSpotterLog;
-
-import javax.transaction.xa.XAException;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
-import java.io.StringWriter;
 import java.util.Locale;
 
 /**
  * Date: 06.06.2011
  *
  * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
+ * @author <a href="mailto:vorburger@redhat.com">Michael Vorburger</a>
  */
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        if (args == null || args.length == 0) {
-            testLocale(Locale.getDefault());
-        } else {
-            String lang = null;
-            String country = null;
-            String variant = null;
-            for (int i = 0; i < args.length; i++) {
-                switch (i) {
-                    case 1:
-                        lang = args[i];
-                        break;
-                    case 2:
-                        country = args[i];
-                        break;
-                    case 3:
-                        variant = args[i];
-                        break;
-                }
-            }
-            final Locale locale;
-            if (country == null) {
-                locale = new Locale(lang.toLowerCase());
-            } else if (variant == null) {
-                locale = new Locale(lang.toLowerCase(), country.toLowerCase());
-            } else {
-                locale = new Locale(lang.toLowerCase(), country.toLowerCase(), variant);
-            }
-            testLocale(locale);
-        }
+        System.out.println(new Trains().getMessage(Locale.FRANCE));
+        new Trains().demoLocalizedLoggingWithMessages();
     }
 
-    public static void testLocale(final Locale locale) throws IOException {
-        final TrainsSpotterLog tsLogger = Logger.getMessageLogger(TrainsSpotterLog.class, Main.class.getPackage().getName(), locale);
-        tsLogger.nbDieselTrains(8);
-        tsLogger.testDebug(Main.class);
-        Logger.getLogger(Main.class).info(TrainInnerMessages.MESSAGES.noDieselTrains("XYZ"));
-        ExtendedLogger.EXTENDED_LOGGER.invalidValue();
-        final ByteArrayOutputStream out = new ByteArrayOutputStream();
-        out.write("Test out".getBytes());
-        ErrorLogger.ERROR_LOGGER.error(out);
-        ExtendedBasicLogger.LOGGER.debugf("Line test, should be 85.");
-        ExtendedBasicLogger.LOGGER.infof("Line test, should be 86.");
-        ExtendedBasicLogger.LOGGER.multiTest(Main.class, "Main.class is being used.", 87);
-    }
 }

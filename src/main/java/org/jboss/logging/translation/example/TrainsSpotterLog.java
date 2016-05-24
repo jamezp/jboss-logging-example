@@ -22,37 +22,34 @@
 
 package org.jboss.logging.translation.example;
 
-import org.jboss.logging.BasicLogger;
+import org.jboss.logging.Cause;
 import org.jboss.logging.LogMessage;
-import org.jboss.logging.Logger;
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageLogger;
+import static org.jboss.logging.Logger.Level.*;
 
-import static org.jboss.logging.Logger.Level.DEBUG;
+import java.io.IOException;
 
 /**
  * @author Kevin Pollet
  */
-@MessageLogger(projectCode = "TPS")
-public interface TrainsSpotterLog extends BasicLogger {
-    /**
-     * The logger.
-     */
-    TrainsSpotterLog LOGGER = Logger.getMessageLogger(TrainsSpotterLog.class, TrainsSpotterLog.class.getPackage().getName());
+@MessageLogger(projectCode = "TRN")
+public interface TrainsSpotterLog {
 
     @LogMessage
-    @Message(id = 1, value = "There is %s diesel trains")
+    @Message(id = 1, value = "There are %s diesel trains")
     void nbDieselTrains(int number);
 
     @LogMessage
-    void nbDieselTrains(long number);
-
-    @LogMessage
-    @Message(id = Message.INHERIT, value = "There are %s diesel trains on track %s.")
+    @Message(id = 2, value = "There are %s diesel trains on track %s.")
+    // NOTE: The default id Message.INHERIT does *NOT* work in this case - log will just have no ID.. :(
     void nbDieselTrains(int number, String track);
 
+    @LogMessage(level = WARN)
+    @Message(id = 6, value = "Heavy warning: %s")
+    void warning(String value);
 
-    @LogMessage(level = DEBUG)
-    @Message("Test debug %s")
-    void testDebug(Class<?> clazz);
+    @LogMessage(level = WARN)
+    @Message(id = 13, value = "Failed to create file: %s")
+    void touchFileFailed(String fileName, @Cause IOException e);
 }

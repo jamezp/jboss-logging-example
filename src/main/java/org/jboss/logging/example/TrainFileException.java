@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source.
- * Copyright 2011, Red Hat, Inc., and individual contributors
+ * Copyright 2016, Red Hat, Inc., and individual contributors
  * as indicated by the @author tags. See the copyright.txt file in the
  * distribution for a full listing of individual contributors.
  *
@@ -19,31 +19,34 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-
 package org.jboss.logging.example;
 
 /**
+ * Example exception.
  *
- * @author James R. Perkins (jrp)
+ * @author Michael Vorburger
  */
-public class ValueException extends RuntimeException {
+public class TrainFileException extends Exception {
+    private static final long serialVersionUID = 4124552009469378689L;
 
-    /**
-     * Creates a new instance of <code>ValueException</code> without detail message.
-     */
-    public ValueException() {
+    public TrainFileException(String message) {
+        super(message);
     }
 
+/*
+    This pattern is often not needed, unless there really is any code which needs to be able
+    to getFile(), e.g. to handle recovery from the error situation.  In that case, File file
+    can be marked as @Param in TrainExceptionFactory (but wil then not be part of the message).
 
-    /**
-     * Constructs an instance of <code>ValueException</code> with the specified detail message.
-     * @param msg the detail message.
-     */
-    public ValueException(String msg) {
-        super(msg);
+
+    private final File file;
+
+    public TrainFileException(File file) {
+        this.file = file;
     }
 
-    public void setValue(final Object value) {
-        // Do nothing
+    public File getFile() {
+        return file;
     }
+*/
 }

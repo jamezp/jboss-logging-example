@@ -22,7 +22,8 @@
 
 package org.jboss.logging.translation.example;
 
-import org.jboss.logging.Cause;
+import java.util.Locale;
+
 import org.jboss.logging.Message;
 import org.jboss.logging.MessageBundle;
 import org.jboss.logging.Messages;
@@ -31,14 +32,22 @@ import org.jboss.logging.Messages;
  * @author Kevin Pollet
  */
 public class TrainInnerMessages {
-   public static final InnerMessages MESSAGES = Messages.getBundle(InnerMessages.class);
+    public static final InnerMessages MESSAGES = Messages.getBundle(InnerMessages.class, Locale.ENGLISH);
 
-    @MessageBundle(projectCode="TRN")
+    // TODO Isn't this slow, and needs caching?!?
+    public static InnerMessages MESSAGES(Locale locale) {
+        return Messages.getBundle(InnerMessages.class, locale);
+    }
+
+    // There could be other normal methods here, and the @MessageBundle can be an inner class
+    // (but doesn't have to be, can also be separate like e.g. the TrainsSpotterLog).
+
+    @MessageBundle(projectCode = "TRN")
     public interface InnerMessages {
 
-        @Message("There is no diesel trains due to %s")
+        @Message(id = 123, value = "There are no diesel trains due to %s")
         String noDieselTrains(String cause);
 
-        IllegalStateException noDieselTrains(@Cause Throwable cause, String stringCause);
     }
+
 }
