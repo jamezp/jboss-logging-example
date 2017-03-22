@@ -1,9 +1,10 @@
 Examples of how to use the JBoss Logging Tools.
 
 How to build the examples:
- 1. Simply clone the git repository, git clone https://github.com/jamezp/jboss-logging-example.git
+ 1. git clone https://github.com/jamezp/jboss-logging-example.git
  2. cd jboss-logging-example
  3. mvn package
 
-After the build, look under the target/generated-sources/annotation directory if you'd like to see the code that
-was generated.
+How to run the examples:
+ - java -jar target/jboss-logging-example-1.0-SNAPSHOT-jar-with-dependencies.jar
+
